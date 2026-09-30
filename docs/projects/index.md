@@ -1,7 +1,7 @@
 ---
-title: Projects
+title: 项目
 ---
 
-# Projects
+# 项目
 
 记录个人项目的目标、决策、进展与复盘。

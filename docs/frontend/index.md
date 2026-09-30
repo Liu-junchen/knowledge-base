@@ -1,7 +1,7 @@
 ---
-title: Frontend
+title: 前端
 ---
 
-# Frontend
+# 前端
 
 前端基础、工程实践与 Vue 生态笔记。

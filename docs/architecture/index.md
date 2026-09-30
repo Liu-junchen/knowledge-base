@@ -1,7 +1,7 @@
 ---
-title: Architecture
+title: 软件架构
 ---
 
-# Architecture
+# 软件架构
 
 记录架构设计、边界划分与演进过程。

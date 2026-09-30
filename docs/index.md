@@ -5,9 +5,9 @@
 这里保留为站点根路径的兜底页面，主要内容都按模块组织在左侧目录中：
 
 - [学习路线](/learning-path/)
-- [Frontend](/frontend/)
-- [Node.js](/nodejs/)
-- [Architecture](/architecture/)
-- [IoT](/iot/)
-- [AI](/ai/)
-- [Projects](/projects/)
+- [前端](/frontend/)
+- [Node.js 服务端](/nodejs/)
+- [软件架构](/architecture/)
+- [物联网](/iot/)
+- [人工智能](/ai/)
+- [项目](/projects/)

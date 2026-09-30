@@ -13,6 +13,26 @@ type SidebarItem = {
 // project directory and works consistently on Windows and POSIX systems.
 const docsRoot = path.resolve(process.cwd(), 'docs')
 const ignoredNames = new Set(['.vitepress', 'node_modules'])
+const topLevelOrder = new Map([
+  ['learning-path', 0],
+  ['frontend', 1],
+  ['nodejs', 2],
+  ['architecture', 3],
+  ['iot', 4],
+  ['ai', 5],
+  ['blog', 6],
+  ['projects', 7]
+])
+const topLevelTitles = new Map([
+  ['learning-path', '技术学习路线'],
+  ['frontend', '前端'],
+  ['nodejs', 'Node.js 服务端'],
+  ['architecture', '软件架构'],
+  ['iot', '物联网'],
+  ['ai', '人工智能'],
+  ['blog', '博客'],
+  ['projects', '项目']
+])
 
 function stripOrderPrefix(value: string): string {
   return value.replace(/^\d+[-_ ]*/, '')
@@ -48,7 +68,14 @@ function toUrl(relativePath: string): string {
 function buildItems(directory: string, relativeDirectory = ''): SidebarItem[] {
   const entries = fs.readdirSync(directory, { withFileTypes: true })
     .filter((entry) => !ignoredNames.has(entry.name) && !entry.name.startsWith('.'))
-    .sort((a, b) => naturalSort(a.name, b.name))
+    .sort((a, b) => {
+      if (relativeDirectory === '') {
+        const orderA = topLevelOrder.get(a.name) ?? Number.MAX_SAFE_INTEGER
+        const orderB = topLevelOrder.get(b.name) ?? Number.MAX_SAFE_INTEGER
+        if (orderA !== orderB) return orderA - orderB
+      }
+      return naturalSort(a.name, b.name)
+    })
 
   return entries.flatMap((entry) => {
     const absolutePath = path.join(directory, entry.name)
@@ -66,7 +93,11 @@ function buildItems(directory: string, relativeDirectory = ''): SidebarItem[] {
     if (!hasIndex && children.length === 0) return []
 
     return [{
-      text: hasIndex ? displayName(entry.name, indexPath) : displayName(entry.name),
+      text: hasIndex
+        ? (relativeDirectory === ''
+            ? topLevelTitles.get(entry.name) || displayName(entry.name, indexPath)
+            : displayName(entry.name, indexPath))
+        : displayName(entry.name),
       ...(hasIndex ? { link: toUrl(path.join(relativePath, 'index.md')) } : {}),
       ...(children.length ? { items: children } : {}),
       ...(children.length ? { collapsed: false } : {})
@@ -91,14 +122,14 @@ export default defineConfig({
     sidebar,
     search: { provider: 'local' },
     outline: 'deep',
+    docFooter: {
+      prev: false,
+      next: false
+    },
     socialLinks: [{ icon: 'github', link: 'https://github.com/Liu-junchen/knowledge-base' }],
     footer: {
       message: 'Markdown First · 持续积累，长期维护',
       copyright: 'Copyright © 2026 阿白'
-    },
-    editLink: {
-      pattern: 'https://github.com/Liu-junchen/knowledge-base/edit/main/docs/:path',
-      text: '在 GitHub 上编辑此页'
     }
   },
   markdown: {

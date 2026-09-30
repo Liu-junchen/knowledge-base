@@ -1,9 +1,9 @@
 ---
-title: 软件工程师长期技术学习路线与知识体系
-description: 前端、Node.js 全栈、IoT、系统架构、性能与 AI Application 的长期学习总纲。
+title: 技术学习路线
+description: 前端、Node.js、架构、IoT 与 AI 的长期学习路线。
 ---
 
-# 软件工程师长期技术学习路线与知识体系
+# 技术学习路线
 
 > v1.0 · 前端 → Node.js 全栈 / IoT → 系统架构与性能 → AI Application
 

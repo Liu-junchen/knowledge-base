@@ -1,8 +1,8 @@
 ---
-title: MQTT
+title: MQTT 协议
 ---
 
-# MQTT
+# MQTT 协议
 
 MQTT 是一种轻量级的发布/订阅消息协议。
 
