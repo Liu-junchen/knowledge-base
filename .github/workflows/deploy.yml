@@ -28,13 +28,16 @@ jobs:
           node-version: 20
           cache: npm
       - name: Setup Pages
+        id: pages
         uses: actions/configure-pages@v5
       - name: Install dependencies
         run: npm ci
       - name: Build
         run: npm run build
         env:
-          VITEPRESS_BASE: /
+          # GitHub Pages 自动返回正确的 base path：
+          # 用户站点为 /，项目站点通常为 /<repository>/。
+          VITEPRESS_BASE: ${{ steps.pages.outputs.base_path }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

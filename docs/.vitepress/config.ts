@@ -86,24 +86,18 @@ export default defineConfig({
   lastUpdated: true,
   themeConfig: {
     logo: '/logo.svg',
-    nav: [
-      { text: '首页', link: '/' },
-      { text: '学习路线', link: '/learning-path/' },
-      { text: '知识库', link: '/frontend/' },
-      { text: '项目', link: '/projects/' },
-      { text: '博客', link: '/blog/' },
-      { text: 'GitHub', link: 'https://github.com/' }
-    ],
+    // 知识边界已经由自动 Sidebar 表达，顶部不再重复展示分类入口。
+    nav: [],
     sidebar,
     search: { provider: 'local' },
     outline: 'deep',
-    socialLinks: [{ icon: 'github', link: 'https://github.com/' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/Liu-junchen/knowledge-base' }],
     footer: {
       message: 'Markdown First · 持续积累，长期维护',
       copyright: 'Copyright © 2026 阿白'
     },
     editLink: {
-      pattern: 'https://github.com/your-name/your-repository/edit/main/docs/:path',
+      pattern: 'https://github.com/Liu-junchen/knowledge-base/edit/main/docs/:path',
       text: '在 GitHub 上编辑此页'
     }
   },
